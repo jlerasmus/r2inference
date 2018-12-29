@@ -2,6 +2,7 @@ before_script:
   - cd /home/builder/devdirs/builds
   - rm -rf r2inference gst-inference local
 
+#r2inference testing section
 r2inference:
   tags:
     - r2inference
