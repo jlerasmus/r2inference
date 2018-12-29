@@ -1,0 +1,17 @@
+before_script:
+  - cd /home/builder/devdirs/builds
+  - rm -rf r2inference gst-inference local
+
+r2inference:
+  tags:
+    - r2inference
+  image: registry.gitlab.com/ridgerun/r2inference:latest
+  script:
+    - export PREFIX=/home/builder/devdirs/builds/local
+    - cd /home/builder/devdirs/builds
+    - git clone https://gitlab.com/RidgeRun/r2inference.git
+    - cd r2inference
+    - ./autogen.sh --enable-ncsdk --disable-tests --prefix $PREFIX
+    - make
+    - make check
+    - make install
