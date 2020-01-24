@@ -76,6 +76,7 @@ class Parameters: public IParameters {
 
   class IntAccessor: public Accessor {
    public:
+    IntAccessor (Parameters *target): Accessor (target) {}
     int value;
   };
 
@@ -94,6 +95,32 @@ class Parameters: public IParameters {
     }
   };
 
+<<<<<<< HEAD
+=======
+  class NumberOfThreadsAccessor: public IntAccessor {
+   public:
+    NumberOfThreadsAccessor (Parameters *target): IntAccessor (target) {}
+    RuntimeError Set () {
+      return target->engine->SetNumberOfThreads(this->value);
+    }
+    RuntimeError Get () {
+      this->value = target->engine->GetNumberOfThreads();
+      return RuntimeError ();
+    }
+  };
+
+  class AllowFP16Accessor: public IntAccessor {
+   public:
+    AllowFP16Accessor (Parameters *target): IntAccessor (target) {}
+    RuntimeError Set () {
+      return target->engine->SetNumberOfThreads(this->value);
+    }
+    RuntimeError Get () {
+      this->value = target->engine->GetNumberOfThreads();
+      return RuntimeError ();
+    }
+  };
+>>>>>>> Add new parameters to tflite
   struct ParamDesc {
     ParameterMeta meta;
     std::shared_ptr < Accessor > accessor;
